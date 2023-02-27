@@ -2,7 +2,7 @@ package main.java.laborator1;
 
 public class lab1 {
 
-    private int numberLab;
+    protected int numberLab;
 
     public int getNumberLab() {
         return numberLab;
@@ -16,4 +16,7 @@ public class lab1 {
         System.out.println("salut numele meu e denis");
     }
 
+    public static void main(String[] args){
+
+    }
 }
