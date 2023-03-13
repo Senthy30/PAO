@@ -4,6 +4,8 @@ import main.java.laborator1.lab1;
 
 public class tclass {
 
+    Integer a;
+
     public static void main(String[] args) {
         lab1.main(null);
 
