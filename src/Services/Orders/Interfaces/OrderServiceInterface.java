@@ -3,6 +3,8 @@ package Services.Orders.Interfaces;
 import Orders.Order;
 import Products.Product;
 
+import java.io.IOException;
+
 public interface OrderServiceInterface {
 
     public void ShowProducts(int id);
@@ -21,8 +23,8 @@ public interface OrderServiceInterface {
 
     public Order GetOrderById(int id);
 
-    public int ReadNewOrder(int idRestaurant);
+    public int ReadNewOrder(int idRestaurant, int idDeliveryAgent, boolean deliveredHome);
 
-    public Order GetNewOrder(int idRestaurant);
+    public Order GetNewOrder(int idRestaurant, int idDeliveryAgent, boolean deliveredHome);
 
 }

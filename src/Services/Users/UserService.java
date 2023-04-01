@@ -6,6 +6,7 @@ import Products.Product;
 import Services.Users.Interfaces.UserServiceInterface;
 import Users.User;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -77,7 +78,7 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public int ReadNewUser(){
+    public int ReadNewUser() throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         String firstName;
@@ -86,20 +87,24 @@ public class UserService implements UserServiceInterface {
         String email;
         String address;
 
-        System.out.print("Enter first name:");
-        firstName = scanner.nextLine();
+        try {
+            System.out.print("Enter first name:");
+            firstName = scanner.nextLine();
 
-        System.out.print("Enter last name:");
-        lastName = scanner.nextLine();
+            System.out.print("Enter last name:");
+            lastName = scanner.nextLine();
 
-        System.out.print("Enter phone number:");
-        phoneNumber = scanner.nextLine();
+            System.out.print("Enter phone number:");
+            phoneNumber = scanner.nextLine();
 
-        System.out.print("Enter email:");
-        email = scanner.nextLine();
+            System.out.print("Enter email:");
+            email = scanner.nextLine();
 
-        System.out.print("Enter address:");
-        address = scanner.nextLine();
+            System.out.print("Enter address:");
+            address = scanner.nextLine();
+        } catch (Exception IOException) {
+            throw new IOException("Invalid input has been given!");
+        }
 
         User user = new User(firstName, lastName, phoneNumber, email, address);
 
@@ -110,9 +115,15 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public User GetNewUser(){
-        User user = GetUserById(ReadNewUser());
+        try {
+            User user = GetUserById(ReadNewUser());
 
-        return user;
+            return user;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+
+            return null;
+        }
     }
 
     @Override
@@ -142,8 +153,10 @@ public class UserService implements UserServiceInterface {
         List<Order> orderHistory = user.GetOrderHistory();
         System.out.println("Order history of " + user.GetFirstName() + " " + user.GetLastName() + ":");
         int currentIndex = 1;
-        for(Order order : orderHistory)
-            System.out.println("Order 1.\n" + order);
+        for(Order order : orderHistory) {
+            System.out.println("Order " + currentIndex + ".\n" + order);
+            currentIndex++;
+        }
         System.out.println();
     }
 

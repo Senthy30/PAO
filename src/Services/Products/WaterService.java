@@ -4,6 +4,7 @@ import Products.Product;
 import Products.Water;
 import Services.Products.Interfaces.WaterServiceInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,13 +29,17 @@ public class WaterService implements WaterServiceInterface {
     }
 
     @Override
-    public int ReadNewWater(Product product) {
+    public int ReadNewWater(Product product) throws IOException {
         Scanner myInput = new Scanner( System.in );
 
         double pH = 0;
 
-        System.out.println("Enter the pH of the water: ");
-        pH = myInput.nextDouble();
+        System.out.print("Enter the pH of the water: ");
+        try {
+            pH = myInput.nextDouble();
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         Water water = new Water(product, pH);
         water.SetDescription();
@@ -47,9 +52,15 @@ public class WaterService implements WaterServiceInterface {
 
     @Override
     public Water GetNewWater(Product product) {
-        Water water = GetWaterById(ReadNewWater(product));
+        try {
+            Water water = GetWaterById(ReadNewWater(product));
 
-        return water;
+            return water;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+
+            return null;
+        }
     }
 
 }

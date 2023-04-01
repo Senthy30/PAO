@@ -25,6 +25,7 @@ public class Main {
             System.out.println("2. Create new user");
             System.out.println("3. Browse through users");
             System.out.println("4. Browse through restaurants");
+            System.out.print("Choose an option: ");
 
             option = scanner.nextInt();
 
@@ -48,15 +49,18 @@ public class Main {
         int idRestaurant = -1;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the id of the restaurant: ");
+        System.out.print("Enter the id of the restaurant: ");
 
         idRestaurant = scanner.nextInt();
-        if(idRestaurant < 0 || idRestaurant >= service.GetLengthOfRestaurants())
+        if(idRestaurant < 0 || idRestaurant >= service.GetLengthOfRestaurants()) {
+            System.out.println("Invalid index for restaurant!");
+
             return;
+        }
 
         int option = -1;
         while(option != 0){
-            System.out.println("Choose an option: ");
+
             System.out.println("0. Exit");
             System.out.println("1. Show products");
             System.out.println("2. Show products ordered ascendent by price");
@@ -65,6 +69,7 @@ public class Main {
             System.out.println("5. Show all information about all delivery agents");
             System.out.println("6. Add new delivery agent");
 
+            System.out.print("Choose an option: ");
             option = scanner.nextInt();
 
             if(option == 1){
@@ -120,15 +125,18 @@ public class Main {
         int idUser = -1;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the id of the user: ");
+        System.out.print("Enter the id of the user: ");
 
         idUser = scanner.nextInt();
-        if(idUser < 0 || idUser >= service.GetLengthOfUsers())
+        if(idUser < 0 || idUser >= service.GetLengthOfUsers()){
+            System.out.println("Invalid index for user!");
+
             return;
+        }
 
         int option = -1;
         while(option != 0){
-            System.out.println("Choose an option: ");
+
             System.out.println("0. Exit");
             System.out.println("1. Create new order");
             System.out.println("2. Show history of orders");
@@ -142,6 +150,7 @@ public class Main {
             System.out.println("10. Change email");
             System.out.println("11. Show account information about this user");
 
+            System.out.print("Choose an option: ");
             option = scanner.nextInt();
 
             if(option == 1){
@@ -177,10 +186,10 @@ public class Main {
     private static void PlaceNewCommand(int idUser){
         int option = -1;
 
-        System.out.println("Choose a restaurant: ");
         service.ShowAllRestaurants();
 
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Choose a restaurant: ");
         option = scanner.nextInt();
 
         Restaurant restaurant = service.GetRestaurantById(option);
@@ -188,7 +197,8 @@ public class Main {
             return;
 
         Order order = service.CreateNewOrder(restaurant.GetId());
-        service.AddNewOrder(idUser, order);
+        if(order != null)
+            service.AddNewOrder(idUser, order);
     }
 
     private static void ShowHistoryOfOrders(int idUser){
@@ -199,6 +209,7 @@ public class Main {
         int option = -1;
 
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Choose an order: ");
         option = scanner.nextInt();
 
         service.ShowProductsFromOrderByIndex(idUser, option);
@@ -208,6 +219,7 @@ public class Main {
         int option = -1;
 
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Choose an order: ");
         option = scanner.nextInt();
 
         service.ShowProductsFromOrdersAscByPrice(idUser, option);
@@ -217,6 +229,7 @@ public class Main {
         int option = -1;
 
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Choose an order: ");
         option = scanner.nextInt();
 
         service.ShowProductsFromOrdersDescByPrice(idUser, option);
@@ -229,30 +242,36 @@ public class Main {
     private static void CheckIfUserOrderedSomethingOnDate(int idUser){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the date: ");
-        System.out.print("Year: ");
-        int year = scanner.nextInt();
-        System.out.print("\nMonth: ");
-        int month = scanner.nextInt();
-        System.out.print("\nDay: ");
-        int day = scanner.nextInt();
-        System.out.println();
+        try {
+            System.out.println("Enter the date: ");
+            System.out.print("Year: ");
+            int year = scanner.nextInt();
+            System.out.print("Month: ");
+            int month = scanner.nextInt();
+            System.out.print("Day: ");
+            int day = scanner.nextInt();
+            System.out.println();
 
-        LocalDate date = LocalDate.of(year, month, day);
-        service.CheckIfUserOrderedSomethingOnDate(idUser, date);
+            LocalDate date = LocalDate.of(year, month, day);
+            service.CheckIfUserOrderedSomethingOnDate(idUser, date);
+        } catch (Exception e) {
+            System.out.println("Invalid date!");
+
+            return;
+        }
     }
 
     private static void ChangeAdress(int idUser){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the new adress: ");
-        String newAdress = scanner.next();
+        System.out.print("Enter the new adress: ");
+        String newAdress = scanner.nextLine();
 
         service.ChangeAdress(idUser, newAdress);
     }
 
     private static void ChangePhoneNumber(int idUser){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the new phone number: ");
+        System.out.print("Enter the new phone number: ");
         String newPhoneNumber = scanner.next();
 
         service.ChangePhoneNumber(idUser, newPhoneNumber);
@@ -260,7 +279,7 @@ public class Main {
 
     private static void ChangeEmail(int idUser){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the new email: ");
+        System.out.print("Enter the new email: ");
         String newEmail = scanner.next();
 
         service.ChangeEmail(idUser, newEmail);

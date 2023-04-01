@@ -5,6 +5,7 @@ import Products.Comparator.ProductComparatorAscByPrice;
 import Products.Product;
 import Services.Orders.Interfaces.OrderServiceInterface;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -34,8 +35,11 @@ public class OrderService implements OrderServiceInterface {
         Order order = GetOrderById(id);
 
         System.out.println("Products in order " + order.GetId() + " are:");
-        for(Product product : order.GetProducts())
-            System.out.println(product.GetId() + ". " + product.GetFoodName());
+        int currentIndex = 1;
+        for(Product product : order.GetProducts()){
+            System.out.println(currentIndex + ". " + product.GetFoodName());
+            currentIndex++;
+        }
         System.out.println();
     }
 
@@ -110,15 +114,12 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public int ReadNewOrder(int idRestaurant){
+    public int ReadNewOrder(int idRestaurant, int idDeliveryAgent, boolean deliveredHome) {
         Scanner myInput = new Scanner( System.in );
 
         boolean isDelivered = false;
-        int idDeliveryAgent = -1;
 
-        System.out.println("Do you want to deliver the order at home? (1/0)");
-        if(myInput.nextInt() == 1)
-            isDelivered = true;
+        isDelivered = deliveredHome;
 
         Order order = new Order(idRestaurant, isDelivered);
         ordersList.add(order);
@@ -127,8 +128,8 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public Order GetNewOrder(int idRestaurant){
-        Order order = GetOrderById(ReadNewOrder(idRestaurant));
+    public Order GetNewOrder(int idRestaurant, int idDeliveryAgent, boolean deliveredHome){
+        Order order = GetOrderById(ReadNewOrder(idRestaurant, idDeliveryAgent, deliveredHome));
 
         return order;
     }

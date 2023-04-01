@@ -3,6 +3,7 @@ package Services.Users.Interfaces;
 import Orders.Order;
 import Users.User;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public interface UserServiceInterface {
@@ -17,7 +18,7 @@ public interface UserServiceInterface {
 
     public void AddNewOrder(int id, Order order);
 
-    public int ReadNewUser();
+    public int ReadNewUser() throws IOException;
 
     public User GetNewUser();
 

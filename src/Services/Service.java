@@ -11,6 +11,7 @@ import Services.Restaurants.RestaurantService;
 import Services.Users.UserService;
 import Users.User;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -65,34 +66,45 @@ public class Service implements ServiceInterface {
 
     @Override
     public void CreateNewRestaurant(){
-        Restaurant restaurant = restaurantService.GetNewRestaurant();
+        int restaurantId = Restaurant.GetIdCounter();
         Product product;
 
         System.out.println("Enter the information for hambruger: ");
-        product = productService.GetNewProduct(restaurant.GetId());
+        product = productService.GetNewProduct(restaurantId);
+        if(product == null)
+            return;
         Hamburger hamburger = new Hamburger(product);
         hamburger.SetFoodName();
 
         System.out.println("Enter the information for pizza: ");
-        product = productService.GetNewProduct(restaurant.GetId());
+        product = productService.GetNewProduct(restaurantId);
+        if(product == null)
+            return;
         Pizza pizza = new Pizza(product);
         pizza.SetFoodName();
 
         System.out.println("Enter the information for shaorma: ");
-        product = productService.GetNewProduct(restaurant.GetId());
+        product = productService.GetNewProduct(restaurantId);
+        if(product == null)
+            return;
         Shaorma shaorma = new Shaorma(product);
         shaorma.SetFoodName();
 
         System.out.println("Enter the information for juice: ");
-        product = productService.GetNewProduct(restaurant.GetId());
+        product = productService.GetNewProduct(restaurantId);
+        if(product == null)
+            return;
         Juice juice = new Juice(product);
         juice.SetFoodName();
 
         System.out.println("Enter the information for water: ");
-        product = productService.GetNewProduct(restaurant.GetId());
+        product = productService.GetNewProduct(restaurantId);
+        if(product == null)
+            return;
         Water water = new Water(product);
         water.SetFoodName();
 
+        Restaurant restaurant = restaurantService.GetNewRestaurant();
         restaurantService.AddProduct(restaurant.GetId(), hamburger);
         restaurantService.AddProduct(restaurant.GetId(), pizza);
         restaurantService.AddProduct(restaurant.GetId(), shaorma);
@@ -103,15 +115,33 @@ public class Service implements ServiceInterface {
     @Override
     public Order CreateNewOrder(int idRestaurant){
         Restaurant restaurant = restaurantService.GetRestaurantById(idRestaurant);
-        Order order = orderService.GetNewOrder(idRestaurant);
+        Order order = null;
         Scanner myInput = new Scanner( System.in );
 
+        boolean isDelivered = false;
+        System.out.print("Do you want to deliver the order at home? (1/0)");
+        try {
+            if(myInput.nextInt() == 1)
+                isDelivered = true;
+        } catch (Exception IOException) {
+            System.out.println("Invalid input has been given!");
+
+            return null;
+        }
+
+        int lengthDeliveryAgents = restaurantService.GetRestaurantById(idRestaurant).GetDeliveryAgentList().size();
+        if(lengthDeliveryAgents == 0){
+            System.out.println("There are no delivery agents for this restaurant!");
+            return null;
+        }
+
         int type = -1;
+        int numberOfProducts = 0;
         while(type != 0){
-            System.out.println("0. Exit");
+            System.out.println("0. Finish order");
             restaurantService.ShowProducts(idRestaurant);
 
-            System.out.println("Enter the type of the product: ");
+            System.out.print("Enter the type of the product: ");
             type = myInput.nextInt();
 
             if(type < 0 || type > 5){
@@ -136,10 +166,26 @@ public class Service implements ServiceInterface {
                 productType = waterService.GetNewWater(product);
             }
 
+            if(productType == null) {
+                System.out.println("Choose again an option!");
+                continue;
+            }
+
+            numberOfProducts++;
+            if(numberOfProducts == 1) {
+                int idDeliveryAgent = -1;
+                if (isDelivered)
+                    idDeliveryAgent = (int)(Math.random() * lengthDeliveryAgents);
+
+                order = orderService.GetNewOrder(idRestaurant, idDeliveryAgent, isDelivered);
+            }
+
             orderService.AddProduct(order.GetId(), productType);
         }
 
-        return orderService.GetOrderById(order.GetId());
+        if(order != null)
+            return orderService.GetOrderById(order.GetId());
+        return null;
     }
 
     @Override
@@ -184,21 +230,43 @@ public class Service implements ServiceInterface {
 
     @Override
     public void ShowProductsFromOrderByIndex(int idUser, int index){
-        int idOrder = userService.GetUserById(idUser).GetOrderHistory().get(index).GetId();
+
+        int idOrder = 0;
+        try {
+            idOrder = userService.GetUserById(idUser).GetOrderHistory().get(index).GetId();
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Invalid index!");
+
+            return;
+        }
 
         orderService.ShowProducts(idOrder);
     }
 
     @Override
     public void ShowProductsFromOrdersAscByPrice(int idUser, int index){
-        int idOrder = userService.GetUserById(idUser).GetOrderHistory().get(index).GetId();
+        int idOrder = 0;
+        try {
+            idOrder = userService.GetUserById(idUser).GetOrderHistory().get(index).GetId();
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Invalid index!");
+
+            return;
+        }
 
         orderService.ShowProductsOrderedAscByPrice(idOrder);
     }
 
     @Override
     public void ShowProductsFromOrdersDescByPrice(int idUser, int index){
-        int idOrder = userService.GetUserById(idUser).GetOrderHistory().get(index).GetId();
+        int idOrder = 0;
+        try{
+            idOrder = userService.GetUserById(idUser).GetOrderHistory().get(index).GetId();
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Invalid index!");
+
+            return;
+        }
 
         orderService.ShowProductsOrderedDescByPrice(idOrder);
     }
@@ -245,7 +313,11 @@ public class Service implements ServiceInterface {
 
     @Override
     public void ShowDeliveryAgentInRestaurantByIndex(int idRestaurant, int index){
-        System.out.println(restaurantService.GetRestaurantById(idRestaurant).GetDeliveryAgentList().get(index));
+        try {
+            System.out.println(restaurantService.GetRestaurantById(idRestaurant).GetDeliveryAgentList().get(index));
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Invalid index!");
+        }
     }
 
     @Override
@@ -256,12 +328,15 @@ public class Service implements ServiceInterface {
     @Override
     public void AddNewDeliveryAgentInRestaurant(int idRestaurant){
         DeliveryAgent deliveryAgent = deliveryAgentService.GetNewDeliveryAgent(idRestaurant);
-        restaurantService.AddDeliveryAgent(idRestaurant, deliveryAgent);
+
+        if(deliveryAgent != null)
+            restaurantService.AddDeliveryAgent(idRestaurant, deliveryAgent);
     }
 
     @Override
     public void AddNewOrder(int idUser, Order order){
         userService.AddNewOrder(idUser, order);
+        userService.CalculateMostExpensiveProducts(idUser);
         userService.MarkThisDateAsOrderDate(idUser, order.GetDate());
     }
 

@@ -4,6 +4,7 @@ import Products.Pizza;
 import Products.Product;
 import Services.Products.Interfaces.PizzaServiceInterface;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -28,7 +29,7 @@ public class PizzaService implements PizzaServiceInterface {
     }
 
     @Override
-    public int ReadNewPizza(Product product){
+    public int ReadNewPizza(Product product) throws IOException {
         Scanner myInput = new Scanner( System.in );
 
         boolean containsSalt = false;
@@ -40,32 +41,60 @@ public class PizzaService implements PizzaServiceInterface {
         boolean containsOnion = false;
 
         System.out.print("Do you want it to contain salt? (1/0): ");
-        if(myInput.nextInt() == 1)
-            containsSalt = true;
+        try {
+            if(myInput.nextInt() == 1)
+                containsSalt = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         System.out.print("Do you want it to contain mozzarella? (1/0): ");
-        if(myInput.nextInt() == 1)
-            containsMozzarella = true;
+        try {
+            if(myInput.nextInt() == 1)
+                containsMozzarella = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         System.out.print("Do you want it to contain tomato? (1/0): ");
-        if(myInput.nextInt() == 1)
-            containsTomato = true;
+        try {
+            if(myInput.nextInt() == 1)
+                containsTomato = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         System.out.print("Do you want it to contain pepperoni? (1/0): ");
-        if(myInput.nextInt() == 1)
-            containsPepperoni = true;
+        try {
+            if(myInput.nextInt() == 1)
+                containsPepperoni = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         System.out.print("Do you want it to contain mushrooms? (1/0): ");
-        if(myInput.nextInt() == 1)
-            containsMushrooms = true;
+        try {
+            if(myInput.nextInt() == 1)
+                containsMushrooms = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         System.out.print("Do you want it to contain olives? (1/0): ");
-        if(myInput.nextInt() == 1)
-            containsOlives = true;
+        try {
+            if(myInput.nextInt() == 1)
+                containsOlives = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         System.out.print("Do you want it to contain onion? (1/0): ");
-        if(myInput.nextInt() == 1)
-            containsOnion = true;
+        try {
+            if(myInput.nextInt() == 1)
+                containsOnion = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been given!");
+        }
 
         Pizza pizza = new Pizza(product, containsSalt, containsMozzarella, containsTomato, containsPepperoni, containsMushrooms, containsOlives, containsOnion);
         pizza.SetDescription();
@@ -78,9 +107,15 @@ public class PizzaService implements PizzaServiceInterface {
 
     @Override
     public Pizza GetNewPizza(Product product){
-        Pizza pizza = GetPizzaById(ReadNewPizza(product));
+        try {
+            Pizza pizza = GetPizzaById(ReadNewPizza(product));
 
-        return pizza;
+            return pizza;
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+
+            return null;
+        }
     }
 
 }

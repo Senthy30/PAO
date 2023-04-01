@@ -4,6 +4,7 @@ import Products.Juice;
 import Products.Product;
 import Services.Products.Interfaces.JuiceServiceInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,20 +29,28 @@ public class JuiceService implements JuiceServiceInterface {
     }
 
     @Override
-    public int ReadNewJuice(Product product){
+    public int ReadNewJuice(Product product) throws IOException, IllegalArgumentException {
         Scanner scanner = new Scanner(System.in);
 
         int typeJuice = 0;
         boolean containsSugar = false;
 
         System.out.print("What type of juice do you want? (1 - Apple, 2 - Orange, 3 - Pineapple, 4 - Strawberry): ");
-        typeJuice = scanner.nextInt();
-        if(typeJuice < 1 || typeJuice > 4)
-            throw new IllegalArgumentException("Invalid type of juice!");
+        try {
+            typeJuice = scanner.nextInt();
+            if (typeJuice < 1 || typeJuice > 4)
+                throw new IllegalArgumentException("Invalid type of juice!");
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been give!");
+        }
 
         System.out.print("Do you want it to contain sugar? (1/0): ");
-        if(scanner.nextInt() == 1)
-            containsSugar = true;
+        try {
+            if (scanner.nextInt() == 1)
+                containsSugar = true;
+        } catch (Exception IOException){
+            throw new IOException("Invalid input has been give!");
+        }
 
         Juice juice = new Juice(product, typeJuice, containsSugar);
         juice.SetDescription();
@@ -54,9 +63,19 @@ public class JuiceService implements JuiceServiceInterface {
 
     @Override
     public Juice GetNewJuice(Product product){
-        Juice juice = GetJuiceById(ReadNewJuice(product));
+        try {
+            Juice juice = GetJuiceById(ReadNewJuice(product));
 
-        return juice;
+            return juice;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+
+            return null;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+            return null;
+        }
     }
 
 }
