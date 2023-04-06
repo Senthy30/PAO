@@ -1,54 +1,54 @@
-Tema aplicatiei va fi food delivary.
-Scopul aplicatiei este de a ajuta utilizatorii a da comanda mancare.
-Comanda de mancare poate fi trimisa atat printr-un livrator cat si poate fi ridicata de la unul dintre restaurantele valabile.
-Fiecare restaurant va dispune de cate o persoana care se va ocupa de livrare.
-Fiecare restaurant va dispune de acelasi tipuri de produse, iar fiecare restaurant va avea cantiatea necesara dintr-un produs astfel incat sa satisfaca fiecare comanda.
-Fiecare restaurant va putea sa fixeze propriile preturi pentru produsele disponibile.
-In clasa Restaurant se vor afla informatii precum:
-	- id unic
-	- adresa locatie
-	- produsele disponibile sortate dupa pret descrescator
-	- lista cu livratorii
-	- istoric comenzi
-Va exista o clasa Livrator in care se vor afla informatii precum:
-	- id unic
-	- id-ul restaurantului unde lucreaza
-	- nume
-	- prenume
-	- telefon
-	- salariu
-	- calificativ sub forma unei note de la 0.00 la 10.00 oferit de utilizatori (cu 2 zecimale)
-Fiecare tip de produs va mosteni o clasa numita Produs in care se vor afla informatii precum: 
-	- id unic
-	- id-ul restaurantului unde a fost facut
-	- greutate 
-	- pret 
-	- data de expirare
- 	- calorii
-	- o scurta descriere a produsului
-Vor exista mai multe tipuri de produse cum ar fi: 
-	- Hamburger
-	- Pizza
- 	- Shaorma
-	- Apa 
-	- Suc
-Clasa Hamburger va avea informatiile precum:
-	- contine sare
-	- contine seminte de susan
-	- contine piper
-	- contine cartofi
-	- contine rosii
-	- contine varza
-	- contine castraveti murati
-	- contine cascaval
-	- contine ceapa
-Clasa Pizza va avea informatii precum:
-	- contine sare
-	- contine mozzarela
-	- contine masline
-	- contine ceapa	
-	- contine ciuperci
-	- contine rosii
+Tema aplicatiei va fi food delivary. <br>
+Scopul aplicatiei este de a ajuta utilizatorii a da comanda mancare.  <br>
+Comanda de mancare poate fi trimisa atat printr-un livrator cat si poate fi ridicata de la unul dintre restaurantele valabile.  <br>
+Fiecare restaurant va dispune de cate o persoana care se va ocupa de livrare. <br>
+Fiecare restaurant va dispune de acelasi tipuri de produse, iar fiecare restaurant va avea cantiatea necesara dintr-un produs astfel incat sa satisfaca fiecare comanda.  <br>
+Fiecare restaurant va putea sa fixeze propriile preturi pentru produsele disponibile.  <br>
+In clasa Restaurant se vor afla informatii precum:  <br>
+	- id unic  <br>
+	- adresa locatie  <br>
+	- produsele disponibile sortate dupa pret descrescator  <br>
+	- lista cu livratorii  <br>
+	- istoric comenzi  <br>
+Va exista o clasa Livrator in care se vor afla informatii precum:  <br>
+	- id unic  <br>
+	- id-ul restaurantului unde lucreaza  <br>
+	- nume  <br>
+	- prenume  <br>
+	- telefon  <br>
+	- salariu  <br>
+	- calificativ sub forma unei note de la 0.00 la 10.00 oferit de utilizatori (cu 2 zecimale)  <br>
+Fiecare tip de produs va mosteni o clasa numita Produs in care se vor afla informatii precum:   <br>
+	- id unic  <br>
+	- id-ul restaurantului unde a fost facut  <br>
+	- greutate   <br>
+	- pret   <br>
+	- data de expirare  <br>
+ 	- calorii  <br>
+	- o scurta descriere a produsului  <br>
+Vor exista mai multe tipuri de produse cum ar fi:   <br>
+	- Hamburger  <br>
+	- Pizza  <br>
+ 	- Shaorma  <br>
+	- Apa   <br>
+	- Suc  <br>
+Clasa Hamburger va avea informatiile precum:  <br>
+	- contine sare  <br>
+	- contine seminte de susan  <br>
+	- contine piper  <br>
+	- contine cartofi  <br>
+	- contine rosii  <br> 
+	- contine varza  <br>
+	- contine castraveti murati  <br>
+	- contine cascaval  <br>
+	- contine ceapa  <br>
+Clasa Pizza va avea informatii precum:  <br>
+	- contine sare  <br>
+	- contine mozzarela  <br>
+	- contine masline  <br>
+	- contine ceapa	  <br>
+	- contine ciuperci  <br>
+	- contine rosii  <br>
 Clasa Shaorma va avea informatii precum:
 	- contine sare
 	- contine cartofi
