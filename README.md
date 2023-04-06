@@ -87,13 +87,13 @@ Va exista o clasa Utilizator, in care se vor afla informatii precum: <br>
 	- istoric cu toate comenzile <br>
 
 Aplicatia va contine un meniu in principal in care se poate efectua una dintre actiunile:
-<a>
-0. Exit
-1. Creeaza un nou restaurant
-2. Creeaza un nou user
-3. Navigheaza printre utilizatori
-4. Navigheaza printre restaurante 
-<a/>
+<ol>
+	<li> 0. Exit </li>
+	<li> 1. Creeaza un nou restaurant </li>
+	<li> 2. Creeaza un nou user </li>
+	<li> 3. Navigheaza printre utilizatori </li>
+	<li> 4. Navigheaza printre restaurante  </li>
+</ol>
 Daca se selecteaza optiunea 1 sau 2 din meniul principal, atunci se va cere informatii cu privire la restaurant, respectiv user. In cazul in care informatii nu sunt valide, se arunca o exceptie si se termina de citit restaurantul, respectiv userul, fara sa se adauga in lista ca un nou obiect. <br>
 Daca se selecteaza optiunea 3 din meniul principal, atunci se va cere un id corespunzator unui user dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
 0. Exit
