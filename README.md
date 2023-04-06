@@ -91,7 +91,7 @@ Aplicatia va contine un meniu in principal in care se poate efectua una dintre a
 1. Creeaza un nou restaurant
 2. Creeaza un nou user
 3. Navigheaza printre utilizatori
-4. Navigheaza printre restaurante.
+4. Navigheaza printre restaurante <a/>
 Daca se selecteaza optiunea 1 sau 2 din meniul principal, atunci se va cere informatii cu privire la restaurant, respectiv user. In cazul in care informatii nu sunt valide, se arunca o exceptie si se termina de citit restaurantul, respectiv userul, fara sa se adauga in lista ca un nou obiect. <br>
 Daca se selecteaza optiunea 3 din meniul principal, atunci se va cere un id corespunzator unui user dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
 0. Exit
@@ -105,7 +105,7 @@ Daca se selecteaza optiunea 3 din meniul principal, atunci se va cere un id core
 8. Schimba adresa de livrare
 9. Schimba numarul de telefon
 10. Schimba emailul
-11. Afiseaza toate informatiile despre acest user.
+11. Afiseaza toate informatiile despre acest user <a/>
 Daca se selecteaza optiunea 4 din meniul principal, atunci se va cere un id corespunzator unui restaurant dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
 0. Exit
 1. Afiseaza produsele disponibile in restaurant
@@ -113,7 +113,7 @@ Daca se selecteaza optiunea 4 din meniul principal, atunci se va cere un id core
 3. Afiseaza produsele disponibile in restaurant in ordine descrescatoare dupa pret
 4. Afiseaza toate informatiile despre un livrator cu un anumit id
 5. Afiseaza toate informatiile despre toti livratorii din cadrul restaurantului
-6. Adauga un nou livrator
+6. Adauga un nou livrator <a/>
  
  
  
