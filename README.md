@@ -87,32 +87,33 @@ Va exista o clasa Utilizator, in care se vor afla informatii precum: <br>
 	- istoric cu toate comenzile <br>
 
 Aplicatia va contine un meniu in principal in care se poate efectua una dintre actiunile: <br>
-  0. Exit
-  1. Creeaza un nou restaurant
-  2. Creeaza un nou user
-  3. Navigheaza printre utilizatori
-  4. Navigheaza printre restaurante <br>
+0. Exit
+1. Creeaza un nou restaurant
+2. Creeaza un nou user
+3. Navigheaza printre utilizatori
+4. Navigheaza printre restaurante <br>
 Daca se selecteaza optiunea 1 sau 2 din meniul principal, atunci se va cere informatii cu privire la restaurant, respectiv user. In cazul in care informatii nu sunt valide, se arunca o exceptie si se termina de citit restaurantul, respectiv userul, fara sa se adauga in lista ca un nou obiect. <br>
 Daca se selecteaza optiunea 3 din meniul principal, atunci se va cere un id corespunzator unui user dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
-  0. Exit
-  1. Creeaza o noua comanda
-  2. Afiseaza istoriul de comenzi
-  3. Afiseaza produsele dintr-o comanda dupa un index
-  4. Afiseaza produsele in oridine crescatoare dupa pret dintr-o comanda dupa un index
-  5. Afiseaza produsele in oridine descrescatoare dupa pret dintr-o comanda dupa un index
-  6. Afiseaza cele mai scumpe produse cumparate
-  7. Verifica daca ai comandat ceva intr-o anumita zi
-  8. Schimba adresa de livrare
-  9. Schimba numarul de telefon
-  10. Schimba emailul
-  11. Afiseaza toate informatiile despre acest user
- Daca se selecteaza optiunea 4 din meniul principal, atunci se va cere un id corespunzator unui restaurant dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
-  1. Afiseaza produsele disponibile in restaurant
-  2. Afiseaza produsele disponibile in restaurant in ordine crescatoare dupa pret
-  3. Afiseaza produsele disponibile in restaurant in ordine descrescatoare dupa pret
-  4. Afiseaza toate informatiile despre un livrator cu un anumit id
-  5. Afiseaza toate informatiile despre toti livratorii din cadrul restaurantului
-  6. Adauga un nou livrator
+0. Exit
+1. Creeaza o noua comanda
+2. Afiseaza istoriul de comenzi
+3. Afiseaza produsele dintr-o comanda dupa un index
+4. Afiseaza produsele in oridine crescatoare dupa pret dintr-o comanda dupa un index
+5. Afiseaza produsele in oridine descrescatoare dupa pret dintr-o comanda dupa un index
+6. Afiseaza cele mai scumpe produse cumparate
+7. Verifica daca ai comandat ceva intr-o anumita zi
+8. Schimba adresa de livrare
+9. Schimba numarul de telefon
+10. Schimba emailul
+11. Afiseaza toate informatiile despre acest user
+Daca se selecteaza optiunea 4 din meniul principal, atunci se va cere un id corespunzator unui restaurant dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
+0. Exit
+1. Afiseaza produsele disponibile in restaurant
+2. Afiseaza produsele disponibile in restaurant in ordine crescatoare dupa pret
+3. Afiseaza produsele disponibile in restaurant in ordine descrescatoare dupa pret
+4. Afiseaza toate informatiile despre un livrator cu un anumit id
+5. Afiseaza toate informatiile despre toti livratorii din cadrul restaurantului
+6. Adauga un nou livrator
  
  
  
