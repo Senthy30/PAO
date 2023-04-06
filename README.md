@@ -86,7 +86,8 @@ Va exista o clasa Utilizator, in care se vor afla informatii precum: <br>
 	- comenzile in curs de livrare <br>
 	- istoric cu toate comenzile <br>
 
-Aplicatia va contine un meniu in principal in care se poate efectua una dintre actiunile: <br>
+Aplicatia va contine un meniu in principal in care se poate efectua una dintre actiunile:
+<a>
 0. Exit
 1. Creeaza un nou restaurant
 2. Creeaza un nou user
