@@ -87,37 +87,39 @@ Va exista o clasa Utilizator, in care se vor afla informatii precum: <br>
 	- istoric cu toate comenzile <br>
 
 Aplicatia va contine un meniu in principal in care se poate efectua una dintre actiunile:
-<ol>
-	<li> 0. Exit </li>
-	<li> 1. Creeaza un nou restaurant </li>
-	<li> 2. Creeaza un nou user </li>
-	<li> 3. Navigheaza printre utilizatori </li>
-	<li> 4. Navigheaza printre restaurante  </li>
+<ol start="0">
+	<li> Exit </li>
+	<li> Creeaza un nou restaurant </li>
+	<li> Creeaza un nou user </li>
+	<li> Navigheaza printre utilizatori </li>
+	<li> Navigheaza printre restaurante  </li>
 </ol>
 Daca se selecteaza optiunea 1 sau 2 din meniul principal, atunci se va cere informatii cu privire la restaurant, respectiv user. In cazul in care informatii nu sunt valide, se arunca o exceptie si se termina de citit restaurantul, respectiv userul, fara sa se adauga in lista ca un nou obiect. <br>
 Daca se selecteaza optiunea 3 din meniul principal, atunci se va cere un id corespunzator unui user dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
-0. Exit
-1. Creeaza o noua comanda
-2. Afiseaza istoriul de comenzi
-3. Afiseaza produsele dintr-o comanda dupa un index
-4. Afiseaza produsele in oridine crescatoare dupa pret dintr-o comanda dupa un index
-5. Afiseaza produsele in oridine descrescatoare dupa pret dintr-o comanda dupa un index
-6. Afiseaza cele mai scumpe produse cumparate
-7. Verifica daca ai comandat ceva intr-o anumita zi
-8. Schimba adresa de livrare
-9. Schimba numarul de telefon
-10. Schimba emailul
-11. Afiseaza toate informatiile despre acest user
-<a/>
+<ol start="0">
+	<li> Exit </li>
+	<li> Creeaza o noua comanda </li>
+	<li> Afiseaza istoriul de comenzi </li>
+	<li> Afiseaza produsele dintr-o comanda dupa un index </li>
+	<li> Afiseaza produsele in oridine crescatoare dupa pret dintr-o comanda dupa un index </li> </li>
+	<li> Afiseaza produsele in oridine descrescatoare dupa pret dintr-o comanda dupa un index </li>
+	<li> Afiseaza cele mai scumpe produse cumparate </li>
+	<li> Verifica daca ai comandat ceva intr-o anumita zi </li>
+	<li> Schimba adresa de livrare </li>
+	<li> Schimba numarul de telefon </li>
+	<li> Schimba emailul </li>
+	<li> Afiseaza toate informatiile despre acest user </li>
+</ol>
 Daca se selecteaza optiunea 4 din meniul principal, atunci se va cere un id corespunzator unui restaurant dupa care se va afisa un meniu cu urmatoarele optiuni: <br>
-0. Exit
-1. Afiseaza produsele disponibile in restaurant
-2. Afiseaza produsele disponibile in restaurant in ordine crescatoare dupa pret
-3. Afiseaza produsele disponibile in restaurant in ordine descrescatoare dupa pret
-4. Afiseaza toate informatiile despre un livrator cu un anumit id
-5. Afiseaza toate informatiile despre toti livratorii din cadrul restaurantului
-6. Adauga un nou livrator 
-<a/>
+<ol start="0">
+	<li> Exit </li>
+	<li> Afiseaza produsele disponibile in restaurant </li>
+	<li> Afiseaza produsele disponibile in restaurant in ordine crescatoare dupa pret </li>
+	<li> Afiseaza produsele disponibile in restaurant in ordine descrescatoare dupa pret </li>
+	<li> Afiseaza toate informatiile despre un livrator cu un anumit id </li>
+	<li> Afiseaza toate informatiile despre toti livratorii din cadrul restaurantului </li>
+	<li> Adauga un nou livrator </li>
+</ol>
  
  
  
