@@ -1,0 +1,149 @@
+DROP TABLE Users;
+DROP TABLE Products;
+DROP TABLE Orders;
+DROP TABLE Restaurants;
+DROP TABLE DeliveryAgents;
+DROP TABLE Hamburger;
+DROP TABLE Juice;
+DROP TABLE Pizza;
+DROP TABLE Shaorma;
+DROP TABLE Water;
+
+SELECT COUNT(*) as ROWSIZE FROM Users WHERE id = 1;
+
+SELECT * FROM USERS;
+
+SELECT * FROM PRODUCTS;
+
+SELECT * FROM ORDERS;
+
+SELECT * FROM HAMBURGER;
+
+DELETE FROM Orders WHERE id >= 0;
+
+DELETE FROM HAMBURGER WHERE idHamburger >= 0;
+
+SELECT MAX(idHamburger) as MaxId FROM Hamburger;
+
+SELECT * FROM Products INNER JOIN Hamburger ON Products.id = Hamburger.idProduct WHERE idHamburger = 1;
+
+CREATE TABLE Users (
+                       id int,
+                       lastName varchar(255),
+                       firstName varchar(255),
+                       phoneNumber varchar(255),
+                       email varchar(255),
+                       address varchar(255),
+                       PRIMARY KEY (id)
+);
+
+CREATE TABLE Products (
+                          id INT NOT NULL,
+                          idRestaurant INT NOT NULL,
+                          weight INT,
+                          calories INT,
+                          price NUMBER,
+                          expirationDate DATE,
+                          foodName VARCHAR2(255),
+                          description VARCHAR2(255),
+                          PRIMARY KEY (id)
+);
+
+CREATE TABLE Orders (
+                        id INT NOT NULL,
+                        idRestaurant INT NOT NULL,
+                        idDeliveryAgent INT,
+                        idUser INT NOT NULL,
+                        isDelivered CHAR(1),
+                        totalPrice NUMBER,
+                        orderDate DATE,
+                        products VARCHAR(255),
+                        PRIMARY KEY (id)
+);
+
+CREATE TABLE Restaurants (
+                             id INT NOT NULL,
+                             idHamburger INT,
+                             idShaorma INT,
+                             idPizza INT,
+                             idJuice INT,
+                             idWater INT,
+                             address varchar(255),
+                             products VARCHAR(255),
+                             PRIMARY KEY (id)
+);
+
+CREATE TABLE DeliveryAgents (
+                                id INT NOT NULL,
+                                idRestaurant INT,
+                                lastName varchar(255),
+                                firstName varchar(255),
+                                phoneNumber varchar(255),
+                                email varchar(255),
+                                salary INT,
+                                noPersFeedback INT,
+                                feedback NUMBER,
+                                PRIMARY KEY (id)
+);
+
+CREATE TABLE Hamburger (
+                           idHamburger INT NOT NULL,
+                           idProduct INT NOT NULL,
+                           containsSalt CHAR(1),
+                           containsSesame CHAR(1),
+                           containsPepper CHAR(1),
+                           containsFries CHAR(1),
+                           containsOnion CHAR(1),
+                           containsTomato CHAR(1),
+                           containsLettuce CHAR(1),
+                           containsCheese CHAR(1),
+                           containsPickles CHAR(1),
+                           PRIMARY KEY (idHamburger)
+);
+
+CREATE TABLE Juice (
+                       id INT NOT NULL,
+                       idRestaurant INT NOT NULL,
+                       idProduct INT NOT NULL,
+                       typeJuice INT,
+                       containsSugar CHAR(1),
+                       PRIMARY KEY (id)
+);
+
+CREATE TABLE Pizza (
+                       id INT NOT NULL,
+                       idRestaurant INT NOT NULL,
+                       idProduct INT NOT NULL,
+                       containsSalt CHAR(1),
+                       containsMozzarella CHAR(1),
+                       containsTomato CHAR(1),
+                       containsPepperoni CHAR(1),
+                       containsMushrooms CHAR(1),
+                       containsOlives CHAR(1),
+                       containsOnion CHAR(1),
+                       PRIMARY KEY (id)
+);
+
+CREATE TABLE Shaorma (
+                         id INT NOT NULL,
+                         idRestaurant INT NOT NULL,
+                         idProduct INT NOT NULL,
+                         containsSalt CHAR(1),
+                         containsFries CHAR(1),
+                         containsOnion CHAR(1),
+                         containsTomato CHAR(1),
+                         containsLettuce CHAR(1),
+                         containsPickles CHAR(1),
+                         containsParsley CHAR(1),
+                         containsKetchup CHAR(1),
+                         containsMayonnaise CHAR(1),
+                         PRIMARY KEY (id)
+);
+
+CREATE TABLE Water (
+                       id INT NOT NULL,
+                       idRestaurant INT NOT NULL,
+                       idProduct INT NOT NULL,
+                       pH NUMBER,
+                       PRIMARY KEY (id)
+);
